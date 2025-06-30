@@ -62,11 +62,12 @@ if submitted:
         agent=plan_agent
     )
 
-    # --- Crewの作成・実行 ---
+    # --- Crewの作成・実行（ChromaDB無効化） ---
     crew = Crew(
         agents=[event_agent, tour_agent, plan_agent],
         tasks=[task_event, task_tour, task_plan],
-        verbose=True
+        verbose=True,
+        memory=False  # ← ChromaDBを使わないように明示
     )
 
     result = crew.kickoff()
